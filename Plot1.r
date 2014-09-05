@@ -1,11 +1,7 @@
 
 plot1 <- function (){
         
-        if (!file.exists("coursera_output")){
-                dir.create("coursera_output")
-        }
-        
-        download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip","./coursera_output/exdata-data-household_power_consumption.zip.")
+        library(colbycol)
         
         mydata_file_name<-unzip("exdata-data-household_power_consumption.zip")
         
@@ -29,7 +25,7 @@ plot1 <- function (){
         dat$Sub_metering_3<-as.numeric(dat$Sub_metering_3)
         
         plot1<-with(dat,hist(dat$Global_active_power, main="Global Active Power", xlab="Global Active Power (kilowatts)",col="orange"))
-        dev.copy(png,"./coursera_output/plot1.png")
+        dev.copy(png,"./plot1.png")
         dev.off()
         
         return (plot1)  
