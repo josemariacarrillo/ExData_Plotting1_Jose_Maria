@@ -1,11 +1,11 @@
 
-plot1 <- function (){
+plot1 <- function (input){
         
         library(colbycol)
         
         mydata_file_name<-unzip("exdata-data-household_power_consumption.zip")
         
-        i.can <- cbc.read.table(mydata_file_name, header = TRUE, sep = ";")
+        i.can <- cbc.read.table(input, header = TRUE, sep = ";")
         
         mydata <- as.data.frame(i.can)
         
