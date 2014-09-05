@@ -1,15 +1,9 @@
 
-plot2 <- function (){
+plot2 <- function (input){
         
-        if (!file.exists("coursera_output")){
-                dir.create("coursera_output")
-        }
+        library(colbycol)
         
-        download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip","./coursera_output/exdata-data-household_power_consumption.zip.")
-        
-        mydata_file_name<-unzip("exdata-data-household_power_consumption.zip")
-        
-        i.can <- cbc.read.table(mydata_file_name, header = TRUE, sep = ";")
+        i.can <- cbc.read.table(input, header = TRUE, sep = ";")
         
         mydata <- as.data.frame(i.can)
         
@@ -29,7 +23,7 @@ plot2 <- function (){
         dat$Sub_metering_3<-as.numeric(dat$Sub_metering_3)
         
         plot2<-with(dat,plot(dat$Datetime,dat$Global_active_power, main="", ylab="Global Active Power (kilowatts)",xlab="",cex.lab=0.8, pch=".")) + lines(dat$Datetime,dat$Global_active_power,lty=1)
-        dev.copy(png,"./coursera_output/plot2.png")
+        dev.copy(png,"./plot2.png")
         dev.off()
         
         return (plot2)  
